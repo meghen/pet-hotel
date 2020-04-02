@@ -12,7 +12,7 @@ CREATE TABLE "pets" (
     "pet" VARCHAR (50),
     "breed" VARCHAR (50),
     "color" VARCHAR (50),
-    "checked_in" VARCHAR (50)
+    "checked_in" BOOLEAN default false
 );
 
 --Hard Coded data 
