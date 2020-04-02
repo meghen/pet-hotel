@@ -2,13 +2,12 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './Components/App/App';
-
-
-
 import { createStore, combineReducers, applyMiddleware } from 'redux';
+
 // Provider allows us to use redux within our react app
 import { Provider } from 'react-redux';
 import logger from 'redux-logger';
+
 // Import saga middleware
 import createSagaMiddleware from 'redux-saga';
 import axios from 'axios';
@@ -18,8 +17,10 @@ import { takeEvery, put } from 'redux-saga/effects';
 function* rootSaga() {
   yield takeEvery('GET_OWNERS', getPets);
   yield takeEvery('GET_PETS', getOwners);
+  yield takeEvery('ADD_PET', addPet);
+  yield takeEvery('ADD_OWNERS', addOwner);
 }
-git
+
 // Create sagaMiddleware
 const sagaMiddleware = createSagaMiddleware();
 
@@ -62,6 +63,27 @@ const ownerReducer = (state = [], action) => {
           return state;
   }
 }
+
+function* addPet(action) {
+let objectToSend = action.payload;
+console.log('in post addPet', action.payload);
+  yield axios.post('/pets', objectToSend)
+      .catch((error) => {
+          console.log(error);
+      });
+  yield put({ type: 'GET_PETS' });
+}
+
+function* addOwner(action) {
+  let objectToSend = action.payload;
+  console.log('in post addOwner', action.payload);
+    yield axios.post('/owners', objectToSend)
+        .catch((error) => {
+            console.log(error);
+        });
+    yield put({ type: 'GET_OWNERS' });
+  }
+
 
 // Create one store that all components can use
 const storeInstance = createStore(
