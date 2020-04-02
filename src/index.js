@@ -20,6 +20,8 @@ function* rootSaga() {
   yield takeEvery('GET_PETS', getOwners);
   yield takeEvery('ADD_PET', addPet);
   yield takeEvery('ADD_OWNERS', addOwner);
+  yield takeEvery('DELETE_OWNER', deleteOwner);
+  yield takeEvery('DELETE_PET', deletePet);
 }
 
 // Create sagaMiddleware
@@ -51,7 +53,7 @@ function* getOwners() {
   console.log('in the GET getOwners', ownerResponse)
   yield put({
       type: 'SET_OWNERS',
-      payload: petResponse.data
+      payload: ownerResponse.data
   })
 }
 
@@ -83,7 +85,25 @@ function* addOwner(action) {
             console.log(error);
         });
     yield put({ type: 'GET_OWNERS' });
-  }
+}
+
+function* deleteOwner(action) {
+    yield axios.delete(`/owners/${action.payload}`)
+        .catch((error) => {
+            console.log(error);
+        });
+    yield put({ type: 'GET_OWNERS' });
+}
+
+function* deletePet(action) {
+  yield axios.delete(`/pets/${action.payload}`)
+      .catch((error) => {
+          console.log(error);
+      });
+  yield put({ type: 'GET_PETS' });
+}
+
+
 
 
 // Create one store that all components can use
@@ -102,7 +122,7 @@ sagaMiddleware.run(rootSaga);
 
 ReactDOM.render(<Provider store={storeInstance}><App /></Provider>,
   document.getElementById('root'));
-registerServiceWorker();
+
 
 
 // ReactDOM.render(
