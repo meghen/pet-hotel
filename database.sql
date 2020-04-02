@@ -17,5 +17,5 @@ CREATE TABLE "pets" (
 
 INSERT INTO "owners" ("name") VALUES ('Chris'), ('Ally'), ('Dane');
 
-INSERT INTO "pets" ("owner_id", "pet", "breed", "color", "checked_in") VALUES ('1', 'Charlie', 'Shih-tzu', 'black', false)
-,('1', 'Thorin', 'Rabbit', 'White', false), ('2', 'Gatsby', 'Cat', 'White', true), ('3', 'Juniper', 'Cat', 'tabby', false);
+INSERT INTO "pets" ("owner_id", "pet", "breed", "color", "checked_in") VALUES ('1', 'Charlie', 'Shih-tzu', 'black', 'FALSE')
+,('1', 'Thorin', 'Rabbit', 'White', 'FALSE'), ('2', 'Gatsby', 'Cat', 'White', 'TRUE'), ('3', 'Juniper', 'Cat', 'tabby', 'FALSE');
