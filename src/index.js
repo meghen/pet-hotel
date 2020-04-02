@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
-import * as serviceWorker from './serviceWorker';
+
 import { createStore, combineReducers, applyMiddleware } from 'redux';
 // Provider allows us to use redux within our react app
 import { Provider } from 'react-redux';
@@ -17,6 +17,9 @@ function* rootSaga() {
   yield takeEvery('GET_OWNERS', getPets);
   yield takeEvery('GET_PETS', getOwners);
 }
+git
+// Create sagaMiddleware
+const sagaMiddleware = createSagaMiddleware();
 
 //this is the sagas function sending a request to the server for Pets data
 function* getPets() {
@@ -38,7 +41,7 @@ const petsReducer = (state = [], action) => {
   }
 }
 
-
+// sending a request to the server for owner data
 function* getOwners() {
   const ownerResponse = yield axios.get('/owners')
   console.log('in the GET getOwners', ownerResponse)
@@ -48,7 +51,7 @@ function* getOwners() {
   })
 }
 
-
+// The Reducer that stores the pets data on the client side
 const ownerReducer = (state = [], action) => {
   switch (action.type) {
       case 'SET_OWNERS':
@@ -57,7 +60,6 @@ const ownerReducer = (state = [], action) => {
           return state;
   }
 }
-
 
 // Create one store that all components can use
 const storeInstance = createStore(
