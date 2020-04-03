@@ -6,7 +6,7 @@ class ManageOwners extends Component {
     alert('you clicked go to Dashboard!');
     //CHANGE LOCATION???
     console.log(this.props)
-    this.props.history.push('/Dashboard')
+    this.props.history.push('/')
   }
 
   render() {
