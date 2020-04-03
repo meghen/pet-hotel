@@ -1,11 +1,3 @@
-# Pet Hotel Project
-
-> NOTE: __Do not fork this repository.__ Instead, create your own repository from scratch.
-
-Trello Board: https://trello.com/b/1mJRBCmZ/pet-hotel-weekend-project
-
-This Board has some tasks already defined, feel free to update as you see fit.
-
 ## Objectives
 
 - build a full-stack application, writing the backend in a new language
@@ -22,15 +14,9 @@ Be sure to try to focus your Googling to API Servers with these stacks. There ar
 
 These are suggested frameworks and DB connectors for each stack:
 
-- Java / Spring Boot (web framework)
-  - `JBDC` for DB connection and queries
 - Python / Flask (web framework)
   - `psycopg2` for DB connection and queries
-- Ruby / Sinatra (web framework)
-  - `Active Record` which supports a different `pg` for actually connecting
-- PHP / Routing: Easiest is to set the `url` for requests to a specific .php file directly, which will respond with data
-  - `pg-connect` and other built in methods for DB queries
-  - PHP has many frameworks, Laravel is popular but probably overkill for this
+
 
 ## Client Side
 
