@@ -15,7 +15,7 @@ class PetList extends Component {
     getPets() {
         console.log("PetList: in getPets !");
         this.props.dispatch({
-            type: 'FETCH_PETS'
+            type: 'GET_PETS'
         })
     }
 

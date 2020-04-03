@@ -31,7 +31,7 @@ class NewPetForm extends Component {
         console.log( "NewPetForm: in addNewPet !", "color:Green" );
         console.log(`adding plant: ${this.state.newPet}`)
         event.preventDefault();
-        this.props.dispatch({ type: 'NEW_PET', payload: this.state.newPet })
+        this.props.dispatch({ type: 'ADD_PET', payload: this.state.newPet })
     }
 
     render() {
