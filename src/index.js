@@ -22,6 +22,8 @@ function* rootSaga() {
   yield takeEvery('ADD_OWNERS', addOwner);
   yield takeEvery('DELETE_OWNER', deleteOwner);
   yield takeEvery('DELETE_PET', deletePet);
+  yield takeEvery('UPDATE_PET', updatePet);
+
 }
 
 // Create sagaMiddleware
@@ -57,7 +59,7 @@ function* getOwners() {
   })
 }
 
-// The Reducer that stores the pets data on the client side
+// The Reducer that stores the owner data on the client side
 const ownerReducer = (state = [], action) => {
   switch (action.type) {
       case 'SET_OWNERS':
@@ -67,6 +69,7 @@ const ownerReducer = (state = [], action) => {
   }
 }
 
+// The post to add a pet to the database.
 function* addPet(action) {
 let objectToSend = action.payload;
 console.log('in post addPet', action.payload);
@@ -77,6 +80,7 @@ console.log('in post addPet', action.payload);
   yield put({ type: 'GET_PETS' });
 }
 
+// The POST to add an owner to the databse.
 function* addOwner(action) {
   let objectToSend = action.payload;
   console.log('in post addOwner', action.payload);
@@ -87,6 +91,7 @@ function* addOwner(action) {
     yield put({ type: 'GET_OWNERS' });
 }
 
+// The DELETE to remove an owner from the database.
 function* deleteOwner(action) {
     yield axios.delete(`/owners/${action.payload}`)
         .catch((error) => {
@@ -95,6 +100,7 @@ function* deleteOwner(action) {
     yield put({ type: 'GET_OWNERS' });
 }
 
+// The DELETE to remove a pet from the database.
 function* deletePet(action) {
   yield axios.delete(`/pets/${action.payload}`)
       .catch((error) => {
@@ -103,7 +109,16 @@ function* deletePet(action) {
   yield put({ type: 'GET_PETS' });
 }
 
-
+// The UPDATE to checkin and checkout a pet 
+function* updatePet(action) {
+  let objectToSend = action.payload;
+  console.log('in updatePet', objectToSend);
+  yield axios.put(`/post/${objectToSend}`)
+  .catch((error) => {
+      console.log(error);
+  });
+  yield put ({ type: 'GET_PETS' });
+}
 
 
 // Create one store that all components can use
